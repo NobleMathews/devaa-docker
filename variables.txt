@@ -1,3 +1,4 @@
 #Declaration of required external variables
 SDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk
 NDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk\\ndk\\22.0.7026061
+JAVA_HOME="C:\\Program Files\\Java\\jre1.8.0_301"

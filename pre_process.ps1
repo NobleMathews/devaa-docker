@@ -1,11 +1,13 @@
 param ($giturl,$test)
 # argument for test case to run [TODO]
 
+# Remove-Item -LiteralPath "testRepo" -Force -Recurse
 git clone $giturl testRepo
 
-$repo = $(Resolve-FullPath -Path testRepo).Path
-
-$env:Path += ";C:\Program Files\Java\jre1.8.0_301"
+$repo = $(Resolve-Path -Path testRepo).Path
+$java_home = "C:\Program Files\Java\jre1.8.0_301"
+# $env:Path = "C:\Program Files\Java\jre1.8.0_301\bin;"+$env:Path
+$env:JAVA_HOME = $java_home
 
 $external_variables = Get-Content -raw -Path variables.txt | ConvertFrom-StringData
 $projectName = (Get-Item $repo).Name
@@ -34,6 +36,11 @@ function updateLocalProperties{
     $LocalProps.'ndk.dir' = $NDK_LOCATION
     ConvertTo-StringData $LocalProps | Set-Content $local_properties.FullName
 }
+
+function updateGlobalProperties{
+    $LocalProps.Remove("org.gradle.java.home")
+    ConvertTo-StringData $LocalProps | Set-Content $gradle_properties.FullName
+}
 # Set-StrictMode -Version Latest
 # $ErrorActionPreference = "Stop"
 # $PSDefaultParameterValues['*:ErrorAction']='Stop'
@@ -46,6 +53,8 @@ $data.ForEach({
     }
 })
 $local_properties = Get-ChildItem $repo | Where-Object { ($_.PSIsContainer -ne $true) -and ($_.Name -eq "local.properties")}  
+$gradle_properties = Get-ChildItem $repo | Where-Object { ($_.PSIsContainer -ne $true) -and ($_.Name -eq "gradle.properties")}  
+
 # | Select-Object FullName
 if($null -eq $local_properties){
     Write-Host "Rewriting local.properties"
@@ -60,9 +69,15 @@ else{
     }
 }
 
+if(!($null -eq $gradle_properties)){
+    Write-Host "Rewriting gradle.properties"
+    $LocalProps = convertfrom-stringdata (get-content $gradle_properties.FullName -Raw)
+    updateGlobalProperties
+}
+
 Push-Location $repo
 # Start Scan
-codeql database create $projectName --language=java 
+codeql database create $projectName --language=java
 # --overwrite
 # Start Analysis
 codeql database analyze --format=sarif-latest --output=output.json --search-path=C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter $projectName "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java\ql\test\query-tests\security\CWE-2203\$($test).ql"
