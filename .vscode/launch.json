@@ -10,7 +10,7 @@
             "request": "launch",
             "script": "${file}",
             // "args": ["-repo C:\\Users\\elbon\\Documents\\GitHub\\irccloud-android -test domXss"],
-            "args": ["-giturl https://github.com/shivasurya/nextcloud-android  -test localfileinclusion"],
+            "args": ["-giturl \"https://github.com/shivasurya/nextcloud-android\"  -testName \"localfileinclusion\""],
             "cwd": "${file}"
         }
     ]

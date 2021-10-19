@@ -1,5 +1,4 @@
-param ($giturl,$test)
-# argument for test case to run [TODO]
+param ($giturl,$testName)
 
 # Remove-Item -LiteralPath "testRepo" -Force -Recurse
 git clone $giturl testRepo
@@ -80,8 +79,8 @@ Push-Location $repo
 codeql database create $projectName --language=java
 # --overwrite
 # Start Analysis
-codeql database analyze --format=sarif-latest --output=output.json --search-path=C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter $projectName "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java\ql\test\query-tests\security\CWE-2203\$($test).ql"
-# --rerun
+codeql database analyze --format=sarif-latest --output=output.json --search-path=C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter $projectName "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java\ql\test\query-tests\security\CWE-2203\$($testName).ql"
+#  --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
 $jsonObj.runs.ForEach({
