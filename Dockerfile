@@ -124,8 +124,9 @@ RUN CODEQL_VERSION=$(cat /tmp/codeql_version) && \
 ENV PATH="${CODEQL_HOME}/codeql:${PATH}"
 
 RUN mkdir -p ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
-RUN git clone --depth 1 https://github.com/github/codeql ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
+RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 # Pre-compile our queries to save time later
+RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/*.qls
 # RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-repo/*/ql/src/codeql-suites/*.qls
 # RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-go-repo/ql/src/codeql-suites/*.qls
 
