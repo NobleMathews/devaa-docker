@@ -4,11 +4,11 @@ param ($giturl,$testName)
 git clone $giturl testRepo
 
 $repo = $(Resolve-Path -Path testRepo).Path
-$java_home = "C:\Program Files\Java\jre1.8.0_301"
-# $env:Path = "C:\Program Files\Java\jre1.8.0_301\bin;"+$env:Path
-$env:JAVA_HOME = $java_home
+# $java_home = "C:\Program Files\Java\jre1.8.0_301"
+# # $env:Path = "C:\Program Files\Java\jre1.8.0_301\bin;"+$env:Path
+# $env:JAVA_HOME = $java_home
 
-$external_variables = Get-Content -raw -Path variables.txt | ConvertFrom-StringData
+$external_variables = Get-Content -raw -Path ./variables.txt | ConvertFrom-StringData
 $projectName = (Get-Item $repo).Name
 $SDK_LOCATION = $external_variables.'SDK_LOCATION' -replace '[\\]','\$&'
 $NDK_LOCATION = $external_variables.'NDK_LOCATION' -replace '[\\]','\$&'
