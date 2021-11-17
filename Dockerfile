@@ -88,7 +88,7 @@ RUN cd /tmp && \
     wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update; \
-    apt-get install -y default-jdk apt-transport-https && \
+    apt-get install -y openjdk-8-jdk apt-transport-https && \
     apt-get update && \
     rm packages-microsoft-prod.deb
 RUN apt-get install -y dotnet-sdk-3.1
@@ -123,7 +123,7 @@ RUN CODEQL_VERSION=$(cat /tmp/codeql_version) && \
 
 ENV PATH="${CODEQL_HOME}/codeql:${PATH}"
 
-RUN mkdir -p ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
+# RUN mkdir -p ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 # Pre-compile our queries to save time later
 # RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-repo/*/ql/src/codeql-suites/*.qls
@@ -144,5 +144,5 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list && \
     apt-get install -y powershell
 
-CMD pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
+# CMD pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
 

@@ -10,8 +10,8 @@ $repo = $(Resolve-Path -Path testRepo).Path
 
 $external_variables = Get-Content -raw -Path ./variables.txt | ConvertFrom-StringData
 $projectName = (Get-Item $repo).Name
-$SDK_LOCATION = $external_variables.'SDK_LOCATION' -replace '[\\]','\$&'
-$NDK_LOCATION = $external_variables.'NDK_LOCATION' -replace '[\\]','\$&'
+$SDK_LOCATION = $external_variables.'SDK_LOCATION'
+$NDK_LOCATION = $external_variables.'NDK_LOCATION'
 # [Regex]::Escape($external_variables.'NDK_LOCATION')
 function ConvertTo-StringData {
     [CmdletBinding()]
