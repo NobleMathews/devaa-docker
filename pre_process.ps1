@@ -79,7 +79,7 @@ Push-Location $repo
 codeql database create $projectName --language=java
 # --overwrite
 # Start Analysis
-codeql database analyze --format=sarif-latest --output=output.json --search-path=C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter $projectName "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java\ql\test\query-tests\security\CWE-2203\$($testName).ql"
+codeql database analyze --format=sarif-latest --output=output.json --search-path=${CODEQL_HOME}/codeql-repo/java $projectName "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/$($testName).ql"
 #  --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
