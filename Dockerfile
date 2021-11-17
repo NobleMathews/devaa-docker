@@ -125,6 +125,8 @@ ENV PATH="${CODEQL_HOME}/codeql:${PATH}"
 
 # RUN mkdir -p ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
+
+ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
 # Pre-compile our queries to save time later
 # RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-repo/*/ql/src/codeql-suites/*.qls
 # RUN codeql query compile --threads=0 ${CODEQL_HOME}/codeql-go-repo/ql/src/codeql-suites/*.qls
@@ -139,10 +141,15 @@ ENV PYTHONIOENCODING=utf-8
 RUN rm /tmp/gradle-${GRADLE_VERSION}-bin.zip \
 && rm /tmp/commandlinetools-linux-6200805_latest.zip
 
+# https://stackoverflow.com/questions/35128229/error-no-toolchains-found-in-the-ndk-toolchains-folder-for-abi-with-prefix-llv
+RUN cd /opt/android/ndk/*/toolchains/ && \
+    ln -s aarch64-linux-android-4.9 mips64el-linux-android &&\
+    ln -s arm-linux-androideabi-4.9 mipsel-linux-android
+
 # Install Powershell
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list && \
     apt-get install -y powershell
 
-# CMD pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
+# CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
 
