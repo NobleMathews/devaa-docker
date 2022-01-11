@@ -1,6 +1,7 @@
 param ($giturl,$testName)
 
 # Remove-Item -LiteralPath "testRepo" -Force -Recurse
+git clone https://github.com/irccloud/android-websockets
 git clone $giturl testRepo
 
 $repo = $(Resolve-Path -Path testRepo).Path

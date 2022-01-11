@@ -20,7 +20,7 @@ ARG ANDROID_NDK_VERSION=21.1.6352462
 # ANDROID_CMAKE_REV_3_10="3.10.2.4988404"
 
 # Dependencies and needed tools
-RUN apt update -qq && apt install -qq -y openjdk-8-jdk vim git unzip libglu1 libpulse-dev libasound2 libc6  libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxi6  libxtst6 libnss3 wget
+RUN apt update -qq && apt install -qq -y openjdk-11-jdk vim git unzip libglu1 libpulse-dev libasound2 libc6  libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxi6  libxtst6 libnss3 wget
 
 # Download gradle, install gradle and gradlew
 RUN wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp \
@@ -153,4 +153,5 @@ RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HO
 ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
 
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
+# cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android"  -testName "domXss"     
 

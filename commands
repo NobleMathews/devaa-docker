@@ -1,5 +1,13 @@
 docker build --progress=plain --pull --rm -f "Dockerfile" -t devaa:latest "."
+
 #Declaration of required external variables
 SDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk
 NDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk\\ndk\\22.0.7026061
 JAVA_HOME="C:\\Program Files\\Java\\jre1.8.0_301"
+
+cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android"  -testName "domXss"
+
+
+src/com/irccloud/android/activity/ImageViewerActivity.java:366:13:59
+src/com/irccloud/android/activity/PastebinViewerActivity.java:114:21:88
+src/com/irccloud/android/activity/PastebinViewerActivity.java:239:13:80
