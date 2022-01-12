@@ -2,7 +2,7 @@ param ($giturls,$testName,$hash)
 $arrayG = $giturls.Split(",") 
 # Remove-Item -LiteralPath "testRepo" -Force -Recurse
 for ($i=0; $i -lt $arrayG.length; $i++) {
-    if($i==0){
+    if($i -eq 0){
         git clone $arrayG[$i].Trim() testRepo
         if($null -ne $hash){
             Push-Location ./testRepo
