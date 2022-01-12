@@ -1,8 +1,19 @@
-param ($giturl,$testName)
-
+param ($giturls,$testName,$hash)
+$arrayG = $giturls.Split(",") 
 # Remove-Item -LiteralPath "testRepo" -Force -Recurse
-git clone https://github.com/irccloud/android-websockets
-git clone $giturl testRepo
+for ($i=0; $i -lt $arrayG.length; $i++) {
+    if($i==0){
+        git clone $arrayG[$i].Trim() testRepo
+        if($null -ne $hash){
+            Push-Location ./testRepo
+            git checkout $hash
+            Pop-Location
+        }
+    }
+	else{
+        git clone $arrayG[$i].Trim()
+    }
+}
 
 $repo = $(Resolve-Path -Path testRepo).Path
 # $java_home = "C:\Program Files\Java\jre1.8.0_301"
@@ -94,7 +105,9 @@ $jsonObj.runs.ForEach({
 # activity class - bqrs file -> json - get source and sinks -> running test cases
 #  eg. "com.irccloud.android", "com.irccloud.android.activity.SAMLAuthActivity"
 #  run on https://github.com/shivasurya/nextcloud-android.git
-
 # C:\Users\elbon\Documents\GitHub\devaa\examples
+
+Import-Module ./exploit_engine/runner.psm1
+
 
 Pop-Location
