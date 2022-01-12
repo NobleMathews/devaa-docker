@@ -153,5 +153,5 @@ RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HO
 ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
 
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/shivasurya/nextcloud-android"  -testName "localfileinclusion"     
-# cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android"  -testName "domXss"     
+# cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android,https://github.com/irccloud/android-websockets" -testName "xss" -hash "65aecefef1165d5fbdede51a21d045f787f70da2"     
 
