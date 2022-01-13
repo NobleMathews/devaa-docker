@@ -98,8 +98,11 @@ $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
 $jsonObj.runs.ForEach({
     $_.results.ForEach({
         $_.locations.ForEach({ 
-            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".")
-            # "$($_.physicalLocation.artifactLocation.uri):$($_.physicalLocation.region.startLine):$($_.physicalLocation.region.startColumn):$($_.physicalLocation.region.endColumn)"
+            $className = "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java.","")
+            $packageNameParts = $className.Split(".")
+            $packageName = "$($packageNameParts[0]).$($packageNameParts[1]).$($packageNameParts[2])"
+            Write-Output $packageName
+            Write-Output $className
         })
     })
 })
@@ -110,5 +113,14 @@ $jsonObj.runs.ForEach({
 
 Import-Module ./exploit_engine/runner.psm1
 
+$data = @(
+    [pscustomobject]@{xssPayload="https://picsum.photos/500";domain="https://zoho.com/"}
+    [pscustomobject]@{xssPayload="https:/jbdaksndf.com/dskjhbakjhsfh";domain="twitter.com"}
+)
+
+# $data | ForEach-Object {$_.xssPayload}
+
+$payloadData = $data[0].xssPayload
+$domain = $data[0].domain
 
 Pop-Location
