@@ -11,3 +11,21 @@ cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-te
 src/com/irccloud/android/activity/ImageViewerActivity.java:366:13:59
 src/com/irccloud/android/activity/PastebinViewerActivity.java:114:21:88
 src/com/irccloud/android/activity/PastebinViewerActivity.java:239:13:80
+
+https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae
+echo no | Android/Sdk/tools/bin/avdmanager create avd --force --name testAVD --abi google_apis/x86_64 --package 'system-images;android-23;google_apis;x86_64'
+
+sdkmanager --install "system-images;android-25;google_apis;armeabi-v7a"
+echo no | avdmanager create avd --force --name "generic_10" --package "system-images;android-25;google_apis;armeabi-v7a"
+@REM  --tag "default" --abi "x86"
+
+nohup adb devices | grep emulator | cut -f1 | while read line; do adb -s $line emu kill; done
+adb kill-server
+nohup emulator @generic_10 -no-skin -no-audio -no-window -no-boot-anim -gpu off &
+adb start-server
+adb devices
+adb install -g ./exploit_engine/app-debug.apk
+
+https://stackoverflow.com/questions/3634041/detect-when-android-emulator-is-fully-booted
+taking too long to boot
+https://stackoverflow.com/questions/46071235/cannot-start-android-emulator-x86-64-in-docker-container-in-vm/52722942

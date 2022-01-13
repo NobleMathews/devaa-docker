@@ -98,7 +98,8 @@ $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
 $jsonObj.runs.ForEach({
     $_.results.ForEach({
         $_.locations.ForEach({ 
-            "$($_.physicalLocation.artifactLocation.uri):$($_.physicalLocation.region.startLine):$($_.physicalLocation.region.startColumn):$($_.physicalLocation.region.endColumn)"
+            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".")
+            # "$($_.physicalLocation.artifactLocation.uri):$($_.physicalLocation.region.startLine):$($_.physicalLocation.region.startColumn):$($_.physicalLocation.region.endColumn)"
         })
     })
 })
