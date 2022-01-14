@@ -114,7 +114,7 @@ $jsonObj.runs.ForEach({
 Import-Module ./exploit_engine/runner.psm1
 
 $data = @(
-    [pscustomobject]@{xssPayload="https://picsum.photos/500";domain="https://zoho.com/"}
+    [pscustomobject]@{xssPayload="https://zoho.com/";domain="https://zoho.com/"}
     [pscustomobject]@{xssPayload="https:/jbdaksndf.com/dskjhbakjhsfh";domain="twitter.com"}
 )
 

@@ -30,13 +30,24 @@ taking too long to boot
 https://stackoverflow.com/questions/46071235/cannot-start-android-emulator-x86-64-in-docker-container-in-vm/52722942
 
 host
-adb tcpip 5555
+adb.exe tcpip 5555
 
 container
-adb.exe connect 192.168.1.8:5555
+adb connect 192.168.1.8:5555
 
 https://blog.codemagic.io/how-to-dockerize-flutter-apps/#for-macos-and-windows-users
 https://stackoverflow.com/questions/63935677/adb-devices-is-empty-in-windows-docker-container
 
 cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss" 
-adb install -g ./exploit_engine/app-debug.apk
+@REM https://github.com/t4kemyh4nd/vulnwebview
+
+adb shell "run-as com.vuldroid.application cat /data/data/com.vuldroid.application/app_webview/Default/Cookies" > Cookies
+
+docker cp jovial_merkle:/Cookies ./Cookies
+
+
+--
+adb shell
+run-as com.vuldroid.application
+
+/data/data/com.vuldroid.application/app_webview/Default
