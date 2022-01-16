@@ -50,7 +50,7 @@ RUN mkdir /opt/android \
 ENV GRADLE_HOME=/opt/gradle/gradle-$GRADLE_VERSION
 ENV ANDROID_HOME=/opt/android
 ENV ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}
-ENV PATH "$PATH:$GRADLE_HOME/bin:/opt/gradlew:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:${ANDROID_NDK_HOME}"
+ENV PATH "$PATH:$GRADLE_HOME/bin:/opt/gradlew:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:${ANDROID_NDK_HOME}:$ANDROID_HOME/build-tools/${ANDROID_BUILD_TOOLS_LEVEL}"
 ENV LD_LIBRARY_PATH "$ANDROID_HOME/emulator/lib64:$ANDROID_HOME/emulator/lib64/qt/lib"
 
 # install/update basics and python
@@ -156,4 +156,4 @@ ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/secur
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"     
 # cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android,https://github.com/irccloud/android-websockets" -testName "xss" -hash "65aecefef1165d5fbdede51a21d045f787f70da2"     
 
-RUN sudo apt-get install -y sqlite3 libsqlite3-dev
+RUN apt-get install -y sqlite3 libsqlite3-dev

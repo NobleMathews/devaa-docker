@@ -99,7 +99,7 @@ $classNames = @()
 $jsonObj.runs.ForEach({
     $_.results.ForEach({
         $classNames = $_.locations.ForEach({ 
-            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java.","")
+            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java","")
             # $packageNameParts = $className.Split(".")
             # $packageName = "$($packageNameParts[0]).$($packageNameParts[1]).$($packageNameParts[2])"
             # Write-Output $packageName
