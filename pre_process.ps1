@@ -95,14 +95,15 @@ codeql database analyze --format=sarif-latest --output=output.json --search-path
 #  --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
+$classNames = @()
 $jsonObj.runs.ForEach({
     $_.results.ForEach({
-        $_.locations.ForEach({ 
-            $className = "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java.","")
-            $packageNameParts = $className.Split(".")
-            $packageName = "$($packageNameParts[0]).$($packageNameParts[1]).$($packageNameParts[2])"
-            Write-Output $packageName
-            Write-Output $className
+        $classNames = $_.locations.ForEach({ 
+            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java.","")
+            # $packageNameParts = $className.Split(".")
+            # $packageName = "$($packageNameParts[0]).$($packageNameParts[1]).$($packageNameParts[2])"
+            # Write-Output $packageName
+            # Write-Output $className
         })
     })
 })
@@ -113,14 +114,13 @@ $jsonObj.runs.ForEach({
 
 Import-Module ./exploit_engine/runner.psm1
 
-$data = @(
-    [pscustomobject]@{xssPayload="https://zoho.com/";domain="https://zoho.com/"}
-    [pscustomobject]@{xssPayload="https:/jbdaksndf.com/dskjhbakjhsfh";domain="twitter.com"}
-)
-
-# $data | ForEach-Object {$_.xssPayload}
-
-$payloadData = $data[0].xssPayload
-$domain = $data[0].domain
+attackXSS($classNames)
+# $data = @(
+#     [pscustomobject]@{xssPayload="https://zoho.com/";domain="https://zoho.com/"}
+#     [pscustomobject]@{xssPayload="https:/jbdaksndf.com/dskjhbakjhsfh";domain="twitter.com"}
+# )
+# # $data | ForEach-Object {$_.xssPayload}
+# $payloadData = $data[0].xssPayload
+# $domain = $data[0].domain
 
 Pop-Location
