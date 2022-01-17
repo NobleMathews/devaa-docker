@@ -95,11 +95,11 @@ codeql database analyze --format=sarif-latest --output=output.json --search-path
 #  --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
-$classNames = @()
+$classNames = New-Object System.Collections.Generic.List[System.Object]
 $jsonObj.runs.ForEach({
     $_.results.ForEach({
-        $classNames = $_.locations.ForEach({ 
-            "$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java","")
+        $_.locations.ForEach({ 
+            $classNames.Add("$($_.physicalLocation.artifactLocation.uri)".Replace("/",".").Replace("app.src.main.java.","").Replace(".java",""))
             # $packageNameParts = $className.Split(".")
             # $packageName = "$($packageNameParts[0]).$($packageNameParts[1]).$($packageNameParts[2])"
             # Write-Output $packageName
