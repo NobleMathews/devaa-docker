@@ -156,4 +156,4 @@ ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/secur
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"     
 # cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android,https://github.com/irccloud/android-websockets" -testName "xss" -hash "65aecefef1165d5fbdede51a21d045f787f70da2"     
 
-RUN apt-get install -y sqlite3 libsqlite3-dev
+# RUN apt-get install -y sqlite3 libsqlite3-dev
