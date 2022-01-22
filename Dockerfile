@@ -150,7 +150,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     apt-get install -y powershell
 
 # Get DEVAA
-RUN git clone --depth 1 https://github.com/NobleMathews/Devaa-Docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
+RUN git clone --depth 1 https://github.com/NobleMathews/devaa-docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
 
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"     
