@@ -30,9 +30,10 @@ taking too long to boot
 https://stackoverflow.com/questions/46071235/cannot-start-android-emulator-x86-64-in-docker-container-in-vm/52722942
 
 host
-adb.exe tcpip 5555
+C:/tools/platform-tools/adb.exe tcpip 5555
 
 container
+adb kill-server
 adb connect 192.168.1.8:5555
 
 https://blog.codemagic.io/how-to-dockerize-flutter-apps/#for-macos-and-windows-users
