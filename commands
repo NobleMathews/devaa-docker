@@ -1,5 +1,5 @@
 docker build --progress=plain --pull --rm -f "Dockerfile" -t devaa:latest "."
-
+--no-cache
 #Declaration of required external variables
 SDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk
 NDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk\\ndk\\22.0.7026061

@@ -149,11 +149,13 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list && \
     apt-get install -y powershell
 
+RUN pwsh -c "Install-Module -Name PSSQLite -Confirm:\$False -Force"
+
 # Get DEVAA
 RUN git clone --depth 1 https://github.com/NobleMathews/devaa-docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
 
+RUN ln -s ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa devaa
+
 # CMD cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"     
 # cd ${DEVAA_HOME} && pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android,https://github.com/irccloud/android-websockets" -testName "xss" -hash "65aecefef1165d5fbdede51a21d045f787f70da2"     
-
-# RUN apt-get install -y sqlite3 libsqlite3-dev
