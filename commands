@@ -52,3 +52,10 @@ adb shell
 run-as com.vuldroid.application
 
 /data/data/com.vuldroid.application/app_webview/Default
+
+---
+https://devblogs.microsoft.com/commandline/connecting-usb-devices-to-wsl/
+
+usbipd wsl list
+usbipd wsl attach --busid
+usbipd wsl detach --busid <busid>
