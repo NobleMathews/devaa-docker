@@ -1,3 +1,3 @@
 #Declaration of required external variables
-SDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk
-NDK_LOCATION=C:\\Users\\elbon\\AppData\\Local\\Android\\Sdk\\ndk\\22.0.7026061
+SDK_LOCATION=C:\\\\Users\\\\elbon\\\\AppData\\\\Local\\\\Android\\\\Sdk
+NDK_LOCATION=C:\\\\Users\\\\elbon\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\ndk\\\\22.0.7026061

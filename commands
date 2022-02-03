@@ -1,4 +1,6 @@
-pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android"  -testName "xss"
+pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"
+
+./pre_process.ps1 -giturl "https://github.com/NobleMathews/vuldroid"  -testName "xss"
 
 @REM  HOST
 usbipd wsl list

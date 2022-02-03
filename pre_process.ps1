@@ -17,7 +17,7 @@ for ($i=0; $i -lt $arrayG.length; $i++) {
 
 if ($IsWindows -or $ENV:OS) {
     $search_path = "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java"
-    $tests_folder= "$search_path/ql/test/query-tests/security/tests"
+    $tests_folder= "$search_path\ql\test\query-tests\security\tests"
     $external_variables = Get-Content -raw -Path ./win_variables.txt | ConvertFrom-StringData
 } else {
     $search_path = "/usr/local/codeql-home/codeql-repo/java"
@@ -83,10 +83,17 @@ if($null -eq $local_properties){
     # updateLocalProperties
 }
 else{
-    $LocalProps = convertfrom-stringdata (get-content $local_properties.FullName -Raw)
-    if(!(Test-Path $LocalProps.'sdk.dir') -or  !(Test-Path $LocalProps.'ndk.dir')){
-        updateLocalProperties
-    }
+    # Reading file as a single string:
+    $sRawString = Get-Content $local_properties.FullName | Out-String
+
+    # The following line of code makes no sense at first glance 
+    # but it's only because the first '\\' is a regex pattern and the second isn't. )
+    $sStringToConvert = $sRawString -replace '\\', '\\'
+    $LocalProps = convertfrom-stringdata $sStringToConvert
+    # (get-content $local_properties.FullName -Raw)
+    # if(!(Test-Path $LocalProps.'sdk.dir') -or  !(Test-Path $LocalProps.'ndk.dir')){
+    updateLocalProperties
+    # }
 }
 
 if(!($null -eq $gradle_properties)){
@@ -100,8 +107,8 @@ Push-Location $repo
 codeql database create $projectName --language=java
 # --overwrite
 # Start Analysis
-codeql database analyze --format=sarif-latest --output=output.json --search-path=$search_path $projectName "$tests_folder/$($testName).ql"
-#  --rerun
+codeql database analyze --format=sarif-latest --output=output.json --search-path=$search_path $projectName "$tests_folder/$($testName).ql" 
+# --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
 $classNames = New-Object System.Collections.Generic.List[System.Object]
