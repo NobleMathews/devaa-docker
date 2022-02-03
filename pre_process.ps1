@@ -1,11 +1,11 @@
 param ($giturls,$testName,$hash)
 $arrayG = $giturls.Split(",") 
-# Remove-Item -LiteralPath "testRepo" -Force -Recurse
+# Remove-Item -LiteralPath "testingRepo" -Force -Recurse
 for ($i=0; $i -lt $arrayG.length; $i++) {
     if($i -eq 0){
-        git clone $arrayG[$i].Trim() testRepo
+        git clone $arrayG[$i].Trim() testingRepo
         if($null -ne $hash){
-            Push-Location ./testRepo
+            Push-Location ./testingRepo
             git checkout $hash
             Pop-Location
         }
@@ -15,12 +15,21 @@ for ($i=0; $i -lt $arrayG.length; $i++) {
     }
 }
 
-$repo = $(Resolve-Path -Path testRepo).Path
+if ($IsWindows -or $ENV:OS) {
+    $search_path = "C:\Users\elbon\Documents\GitHub\Devaa++\vscode-codeql-starter\ql\java"
+    $tests_folder= "$search_path/ql/test/query-tests/security/tests"
+    $external_variables = Get-Content -raw -Path ./win_variables.txt | ConvertFrom-StringData
+} else {
+    $search_path = "/usr/local/codeql-home/codeql-repo/java"
+    $tests_folder= "$search_path/ql/test/query-tests/security/Devaa/tests"
+    $external_variables = Get-Content -raw -Path ./variables.txt | ConvertFrom-StringData
+}
+
+$repo = $(Resolve-Path -Path testingRepo).Path
 # $java_home = "C:\Program Files\Java\jre1.8.0_301"
 # # $env:Path = "C:\Program Files\Java\jre1.8.0_301\bin;"+$env:Path
 # $env:JAVA_HOME = $java_home
 
-$external_variables = Get-Content -raw -Path ./variables.txt | ConvertFrom-StringData
 $projectName = (Get-Item $repo).Name
 $SDK_LOCATION = $external_variables.'SDK_LOCATION'
 $NDK_LOCATION = $external_variables.'NDK_LOCATION'
@@ -91,7 +100,7 @@ Push-Location $repo
 codeql database create $projectName --language=java
 # --overwrite
 # Start Analysis
-codeql database analyze --format=sarif-latest --output=output.json --search-path=/usr/local/codeql-home/codeql-repo/java $projectName "/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/$($testName).ql"
+codeql database analyze --format=sarif-latest --output=output.json --search-path=$search_path $projectName "$tests_folder/$($testName).ql"
 #  --rerun
 # Fetch JSON and [parse grammar]
 $jsonObj = Get-Content -raw -Path output.json | ConvertFrom-Json
