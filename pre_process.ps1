@@ -1,11 +1,11 @@
 param ($giturls,$testName,$hash)
 $arrayG = $giturls.Split(",") 
-# Remove-Item -LiteralPath "testingRepo" -Force -Recurse
+# Remove-Item -LiteralPath "testRepo" -Force -Recurse
 for ($i=0; $i -lt $arrayG.length; $i++) {
     if($i -eq 0){
-        git clone $arrayG[$i].Trim() testingRepo
+        git clone $arrayG[$i].Trim() testRepo
         if($null -ne $hash){
-            Push-Location ./testingRepo
+            Push-Location ./testRepo
             git checkout $hash
             Pop-Location
         }
@@ -25,7 +25,7 @@ if ($IsWindows -or $ENV:OS) {
     $external_variables = Get-Content -raw -Path ./variables.txt | ConvertFrom-StringData
 }
 
-$repo = $(Resolve-Path -Path testingRepo).Path
+$repo = $(Resolve-Path -Path testRepo).Path
 # $java_home = "C:\Program Files\Java\jre1.8.0_301"
 # # $env:Path = "C:\Program Files\Java\jre1.8.0_301\bin;"+$env:Path
 # $env:JAVA_HOME = $java_home
