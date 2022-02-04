@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "PowerShell: Launch Current File",
+            "name": "PowerShell: Launch devaa",
             "type": "PowerShell",
             "request": "launch",
-            "script": "${file}",
+            "script": "/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/pre_process.ps1",
             // "args": ["-repo C:\\Users\\elbon\\Documents\\GitHub\\irccloud-android -test domXss"],
             "args": ["-giturl \"https://github.com/shivasurya/nextcloud-android\"  -testName \"localfileinclusion\""],
             "cwd": "${file}"

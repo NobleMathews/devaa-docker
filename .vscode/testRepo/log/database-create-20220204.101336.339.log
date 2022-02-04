@@ -1,0 +1,102 @@
+[2022-02-04 10:13:36] This is codeql database create testRepo --language=java
+[2022-02-04 10:13:36] Log file was started late.
+[2022-02-04 10:13:36] [PROGRESS] database create> Initializing database at /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo.
+[2022-02-04 10:13:36] Running plumbing command: codeql database init --language=java --source-root=/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode --allow-missing-source-root=false --allow-already-existing -- /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo
+[2022-02-04 10:13:36] [PROGRESS] database init> Counting lines of code in /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode
+[2022-02-04 10:13:36] [PROGRESS] database init> Resolving extractor java.
+[2022-02-04 10:13:36] Calling plumbing command: codeql resolve languages --format=json
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /usr/local/codeql-home/codeql/.codeqlmanifest.json
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/java/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/html/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/xml/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/ruby/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/javascript/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/go/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/csv/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/cpp/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/properties/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/python/codeql-extractor.yml.
+[2022-02-04 10:13:36] [DETAILS] resolve languages> Parsing /usr/local/codeql-home/codeql/csharp/codeql-extractor.yml.
+[2022-02-04 10:13:36] Plumbing command codeql resolve languages completed:
+                      {
+                        "extractors" : {
+                          "java" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/java"
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/html"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/xml"
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/ruby"
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/javascript"
+                            }
+                          ],
+                          "go" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/go"
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/csv"
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/cpp"
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/properties"
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/python"
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/usr/local/codeql-home/codeql/csharp"
+                            }
+                          ]
+                        }
+                      }
+[2022-02-04 10:13:36] [DETAILS] database init> Found candidate extractor root for java: /usr/local/codeql-home/codeql/java.
+[2022-02-04 10:13:36] [PROGRESS] database init> Successfully loaded extractor Java (java) from /usr/local/codeql-home/codeql/java.
+[2022-02-04 10:13:36] [PROGRESS] database init> Created skeleton CodeQL database at /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo. This in-progress database is ready to be populated by an extractor.
+[2022-02-04 10:13:36] Plumbing command codeql database init completed.
+[2022-02-04 10:13:36] Using autobuild script /usr/local/codeql-home/codeql/java/tools/autobuild.sh.
+[2022-02-04 10:13:36] [DETAILS] database create> Detected autobuild command for Java: /usr/local/codeql-home/codeql/java/tools/autobuild.sh.
+[2022-02-04 10:13:36] [PROGRESS] database create> Running build command: [/usr/local/codeql-home/codeql/java/tools/autobuild.sh]
+[2022-02-04 10:13:36] Running plumbing command: codeql database trace-command --working-dir=/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode --index-traceless-dbs --no-db-cluster -- /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo /usr/local/codeql-home/codeql/java/tools/autobuild.sh
+[2022-02-04 10:13:36] Setting up tracing from specification at /usr/local/codeql-home/codeql/java/tools/compiler-tracing.spec.
+[2022-02-04 10:13:36] Picked up extra JVM args: '-javaagent:/usr/local/codeql-home/codeql/java/tools/codeql-java-agent.jar=ignore-project,java' '-Xbootclasspath/a:/usr/local/codeql-home/codeql/java/tools/codeql-java-agent.jar'
+[2022-02-04 10:13:36] [PROGRESS] database trace-command> Running command in /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode: [/usr/local/codeql-home/codeql/java/tools/autobuild.sh]
+[2022-02-04 10:13:36] [build-stderr] ERROR: Could not detect a suitable build command for the source checkout.
+[2022-02-04 10:13:37] [ERROR] Spawned process exited abnormally (code 1; tried to run: [/usr/local/codeql-home/codeql/tools/linux64/preload_tracer, /usr/local/codeql-home/codeql/java/tools/autobuild.sh])
+[2022-02-04 10:13:37] Exception caught at top level: Exit status 1 from command: [/usr/local/codeql-home/codeql/java/tools/autobuild.sh]
+                      com.semmle.cli2.database.DatabaseProcessCommandCommon.executeSubcommand(DatabaseProcessCommandCommon.java:220)
+                      com.semmle.cli2.database.TraceCommandCommand.executeSubcommand(TraceCommandCommand.java:86)
+                      com.semmle.cli2.picocli.PlumbingRunner.run(PlumbingRunner.java:110)
+                      com.semmle.cli2.picocli.SubcommandCommon.runPlumbingInProcess(SubcommandCommon.java:162)
+                      com.semmle.cli2.database.CreateCommand.executeSubcommand(CreateCommand.java:151)
+                      com.semmle.cli2.picocli.SubcommandCommon.call(SubcommandCommon.java:500)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:205)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:214)
+                      com.semmle.cli2.CodeQL.main(CodeQL.java:98)

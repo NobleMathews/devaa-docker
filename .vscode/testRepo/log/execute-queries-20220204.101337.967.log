@@ -1,0 +1,13 @@
+[2022-02-04 10:13:37] This is codeql execute queries -J-Xmx1981M --off-heap-ram=1981 --verbosity=progress --logdir=/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo/log --evaluator-log-level=1 --insecurely-execute-ml-model-checksums= --warnings=show --search-path=/usr/local/codeql-home/codeql-repo/java --qlconfig-file=/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/qlconfig.yml --no-rerun --output=/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo/results -- /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode/testRepo/db-java /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/https://github.com/shivasurya/nextcloud-android  -testName localfileinclusion.ql
+[2022-02-04 10:13:37] Calling plumbing command: codeql resolve queries --search-path=/usr/local/codeql-home/codeql-repo/java --format=json -- /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/https://github.com/shivasurya/nextcloud-android  -testName localfileinclusion.ql
+[2022-02-04 10:13:38] Exception caught at top level: /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/tests/https:/github.com/shivasurya/nextcloud-android  -testName localfileinclusion.ql does not exist.
+                      com.semmle.cli2.resolve.ResolveQueriesCommand.executeJSON(ResolveQueriesCommand.java:176)
+                      com.semmle.cli2.resolve.ResolveQueriesCommand.executeJSON(ResolveQueriesCommand.java:70)
+                      com.semmle.cli2.picocli.SimpleJsonSubcommand.executeInsistingOnJSON(SimpleJsonSubcommand.java:117)
+                      com.semmle.cli2.picocli.PlumbingRunner.call(PlumbingRunner.java:54)
+                      com.semmle.cli2.picocli.SubcommandCommon.callPlumbingInProcess(SubcommandCommon.java:126)
+                      com.semmle.cli2.execute.ExecuteQueriesCommand.executeSubcommand(ExecuteQueriesCommand.java:209)
+                      com.semmle.cli2.picocli.SubcommandCommon.call(SubcommandCommon.java:500)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:205)
+                      com.semmle.cli2.picocli.SubcommandMaker.runMain(SubcommandMaker.java:214)
+                      com.semmle.cli2.CodeQL.main(CodeQL.java:98)

@@ -1,0 +1,34 @@
+---
+sourceLocationPrefix: "/usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa/.vscode"
+baselineLinesOfCode: 0
+unicodeNewlines: false
+columnKind: "utf16"
+primaryLanguage: "java"
+inProgress:
+  primaryLanguage: "java"
+  installedExtractors:
+    java:
+    - "file:///usr/local/codeql-home/codeql/java/"
+    html:
+    - "file:///usr/local/codeql-home/codeql/html/"
+    xml:
+    - "file:///usr/local/codeql-home/codeql/xml/"
+    ruby:
+    - "file:///usr/local/codeql-home/codeql/ruby/"
+    javascript:
+    - "file:///usr/local/codeql-home/codeql/javascript/"
+    go:
+    - "file:///usr/local/codeql-home/codeql/go/"
+    csv:
+    - "file:///usr/local/codeql-home/codeql/csv/"
+    cpp:
+    - "file:///usr/local/codeql-home/codeql/cpp/"
+    properties:
+    - "file:///usr/local/codeql-home/codeql/properties/"
+    python:
+    - "file:///usr/local/codeql-home/codeql/python/"
+    csharp:
+    - "file:///usr/local/codeql-home/codeql/csharp/"
+creationMetadata:
+  cliVersion: "2.7.6"
+  creationTime: "2022-02-04T04:43:36.649738606Z"
