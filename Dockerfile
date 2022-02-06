@@ -99,8 +99,7 @@ RUN git clone https://github.com/microsoft/codeql-container /usr/local/startup_s
 # RUN mkdir -p /usr/local/startup_scripts
 # RUN ls -al /usr/local/startup_scripts
 # COPY container /usr/local/startup_scripts/
-RUN pip3 install -r /usr/local/startup_scripts/container/requirements.txt
-
+RUN pip3 install -r /usr/local/startup_scripts/container/requirements.txt 
 
 # Install latest codeQL
 ENV CODEQL_HOME /usr/local/codeql-home
@@ -154,6 +153,8 @@ RUN pwsh -c "Install-Module -Name PSSQLite -Confirm:\$False -Force"
 # Get DEVAA
 RUN git clone --depth 1 https://github.com/NobleMathews/devaa-docker ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa
 ENV DEVAA_HOME /usr/local/codeql-home/codeql-repo/java/ql/test/query-tests/security/Devaa
+
+RUN pip3 install -r ${DEVAA_HOME}/server/requirements.txt
 
 RUN ln -s ${CODEQL_HOME}/codeql-repo/java/ql/test/query-tests/security/Devaa devaa
 
