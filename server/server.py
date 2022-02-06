@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask
+
 # initialize our Flask application
 app= Flask(__name__)
-flag = "False"
+
 # @app.route("/name", methods=["POST"])
 # def setName():
 #     if request.method=='POST':
@@ -14,16 +15,25 @@ flag = "False"
 # https://stackoverflow.com/questions/56491976/adb-exe-error-cannot-bind-listener-operation-not-permitted
 @app.route("/evil", methods=["GET"])
 def evil():
-    flag = "True"
-    return flag
+    f = open("single", "w")
+    f.write("True")
+    f.close()
+    return "True"
 @app.route("/reset", methods=["GET"])
 def reset():
-    flag = "False"
-    return flag
+    f = open("single", "w")
+    f.write("False")
+    f.close()
+    return "False"
 @app.route("/last", methods=["GET"])
 def last():
+    f = open("single", "r")
+    flag = f.read().strip()
+    f.close()
+    f = open("single", "w")
+    f.write("False")
+    f.close()
     return flag
-    flag = "False"
 #  main thread of execution to start the server
 if __name__=='__main__':
     app.run(debug=True, port=8888)
