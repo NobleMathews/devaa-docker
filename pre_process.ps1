@@ -128,7 +128,7 @@ $jsonObj.runs.ForEach({
 #  run on https://github.com/shivasurya/nextcloud-android.git
 # C:\Users\elbon\Documents\GitHub\devaa\examples
 
-Import-Module ./exploit_engine/runner.psm1
+Import-Module "$search_path/ql/test/query-tests/security/Devaa/exploit_engine/runner.psm1"
 
 attackXSS($classNames)
 # $data = @(
