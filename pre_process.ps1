@@ -129,8 +129,10 @@ $jsonObj.runs.ForEach({
 # C:\Users\elbon\Documents\GitHub\devaa\examples
 
 Import-Module "$search_path/ql/test/query-tests/security/Devaa/exploit_engine/runner.psm1"
+Import-Module "$search_path/ql/test/query-tests/security/Devaa/exploit_engine/runner2.psm1"
+# attackXSS($classNames)
+attackSpecific($classNames)
 
-attackXSS($classNames)
 # $data = @(
 #     [pscustomobject]@{xssPayload="https://zoho.com/";domain="https://zoho.com/"}
 #     [pscustomobject]@{xssPayload="https:/jbdaksndf.com/dskjhbakjhsfh";domain="twitter.com"}
